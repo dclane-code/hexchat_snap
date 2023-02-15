@@ -1,0 +1,29 @@
+name: hexchat
+base: core20 # the base snap is the execution environment for this snap
+version: '2.16.1' # just for humans, typically '1.2+git' or '1.3.2'
+summary: IRC client
+description: |
+    hexchat IRC client
+
+grade: devel # must be 'stable' to release into candidate/stable channels
+confinement: devmode # use 'strict' once you have the right plugs and slots
+
+apps:
+  hexchat:
+    command: usr/local/bin/hexchat
+
+parts:
+  hexchat:
+    source: https://dl.hexchat.net/hexchat/hexchat-2.16.1.tar.xz
+    plugin: meson
+    build-packages:
+      - librust-gio-sys-dev
+      - cmake
+      - libssl-dev
+      - libgtk2.0-dev
+      - libluajit-5.1-dev
+      - libperl-dev
+      - python3-dev
+      - python3-cffi
+      - gettext
+
